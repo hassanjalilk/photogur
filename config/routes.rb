@@ -10,6 +10,11 @@ Photogur::Application.routes.draw do
 
   get 'picture/:id/edit' => "pictures#edit", as: "edit_picture"
   patch 'picture/:id' => "picture#update"
+
+  delete 'pictures/:id' => 'pictures#destroy', as: "delete_picture"
+
+  root :to => "pictures#index"
+
 end
 
 
