@@ -1,12 +1,20 @@
 
-
-
 <h1>Most recent pictures</h1>
+<%= link_to "New Picture", new_picture_path %>
+
 <ul>
   <% @most_recent_pictures.each do |picture| %>
     <li>
     	<%= picture.title %><br>
     	<%= link_to image_tag(picture.url), picture %>
+    	<%= Picture.created_before(1.minute.ago).count %>
     </li>
+
+
   <% end %>
 </ul>
+
+<h2>Old Pictures</h2>
+
+<%= link_to "1 Month Old", '/pictures?after=1' %>
+
