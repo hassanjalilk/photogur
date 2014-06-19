@@ -1,8 +1,6 @@
 
 <h1>Add a picture</h1>
 
-<% link_to "Back to Pictures" , pictures_url %>
-
 <%= form_for @picture do |f| %>
 
 <p>
@@ -21,7 +19,8 @@
 </p>
 
 <p>
-  <%= f.submit_tag "save" %>
+  <%= f.submit "save" %>
 </p>
 
 <%end%>
+

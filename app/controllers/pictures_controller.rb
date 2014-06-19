@@ -1,10 +1,12 @@
 class PicturesController < ApplicationController
-	def index
-		@pictures = Picture.all
+
+    def index
+    @most_recent_pictures = Picture.most_recent_five
+		# @pictures = Picture.all
 	end
 
   def show
-    @picture = @pictures[params[:id].to_i]
+    @picture = Picture.find(params[:id])
   end
 
   def new
@@ -21,24 +23,20 @@ class PicturesController < ApplicationController
   end
 
   def edit
-  	@pictures = Picture.find(params[:id])
+  	@picture = Picture.find(params[:id])
   end
 
   def update
-  	@picture = Picture.find(params[:id])
-
-  	if @picture.update_attributes(picture_params)
-  		redirect_to "/pictures/#{apcture.id}"
-  	else
-  		render :edit
-  	end
+    @picture = Picture.find(params[:id])
+    @picture.update_attributes(picture_params)
+    redirect_to root_path
   end
 
    def destroy
     @picture = Picture.find(params[:id])
     @picture.destroy
     redirect_to pictures_url
-  end
+   end
 
   private
   def picture_params
